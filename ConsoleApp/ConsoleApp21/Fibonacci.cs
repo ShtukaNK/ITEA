@@ -4,22 +4,36 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp2
+namespace ConsoleApp4
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(Fibonacci(10));
-        }
-        static int Fibonacci(int x)
-        {
-            if (x <= 1)
-                return 1;
-            return Fibonacci(x - 1) + Fibonacci(x - 2);
+            int n;
         }
 
-        
+        public static int Fibonachi(int n)
+        {
+
+            if (n == 0)
+            {
+                return 0;
+            }
+
+            if (n == 1)
+            {
+                return 1;
+            }
+
+            else
+
+            {
+                return Fibonachi(n - 1) + Fibonachi(n - 2);
+            }
+
+
+        }
     }
-    }
+
 }

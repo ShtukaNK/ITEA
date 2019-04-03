@@ -9,7 +9,7 @@ namespace ConsoleApp15
     class Program
     {
         static void Main(string[] args)
-        {E:\c#\Program 18+.cs
+        {
             Console.WriteLine("How old are you, bro?");
 
             int age = Convert.ToInt32(Console.ReadLine());
