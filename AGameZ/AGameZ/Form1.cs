@@ -29,6 +29,35 @@ namespace AGameZ
 
         private void keyisdown(object sender, KeyEventArgs e)
         {
+            if (gameOver) return;
+
+            if (e.KeyCode == Keys.Left)
+            {
+                goleft = true;
+                facing = "left";
+                player.Image = Properties.Resources.left;
+            }
+
+            if (e.KeyCode == Keys.Left)
+            {
+                goright = true;
+                facing = "right";
+                player.Image = Properties.Resources.right;
+            }
+
+            if (e.KeyCode == Keys.Left)
+            {
+                goup = true;
+                facing = "up";
+                player.Image = Properties.Resources.up;
+            }
+
+            if (e.KeyCode == Keys.Left)
+            {
+                godown = true;
+                facing = "down";
+                player.Image = Properties.Resources.down;
+            }
 
         }
 
@@ -41,5 +70,21 @@ namespace AGameZ
         {
 
         }
+
+        private void DropAmmo()
+        {
+
+        }
+
+        private void shoot (string direct)
+        {
+
+        }
+
+        private void makeZombies ()
+        {
+
+        }
+
     }
 }
