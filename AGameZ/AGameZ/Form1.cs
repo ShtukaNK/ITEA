@@ -162,6 +162,52 @@ namespace AGameZ
 
             if (x is PictureBox && x.Tag == "zombie")
             {
+                if (((PictureBox)x).Bounds.IntersectsWith(player.Bounds))
+                {
+                    playerHealth -= 1;
+                }
+
+                if (((PictureBox)x).Left > player.Left)
+                {
+                    ((PictureBox)x).Left -= zombieSpeed;
+                    ((PictureBox)x).Image = Properties.Resources.zleft;
+                }
+
+                if (((PictureBox)x).Top > player.Top)
+                {
+                    ((PictureBox)x).Top -= zombieSpeed;
+                    ((PictureBox)x).Image = Properties.Resources.zup;
+                }
+
+                if (((PictureBox)x).Right > player.Right)
+                {
+                    ((PictureBox)x).Right -= zombieSpeed;
+                    ((PictureBox)x).Image = Properties.Resources.zright;
+                }
+
+                if (((PictureBox)x).Down > player.Down)
+                {
+                    ((PictureBox)x).Down -= zombieSpeed;
+                    ((PictureBox)x).Image = Properties.Resources.zdown;
+                }
+            }
+
+            foreach (Control j in this.Controls)
+            {
+                if ((j is PictureBox && j.Tag == "bullet") && (x is PictureBox && x.Tag == "zombie"))
+                {
+                    if (x.Bounds.IntersectsWith (j.Bounds))
+                    {
+                        score++;
+                        this.Controls.Remove(j);
+                        j.Dispose();
+                        this.Controls.Remove(x);
+                        x.Dispose();
+                        makeZombies();
+                    }
+                }
+            }
+
 
             }
 
@@ -169,6 +215,10 @@ namespace AGameZ
 
         private void DropAmmo()
         {
+        PictureBox ammo = new PictureBox();
+        ammo.Image = Properties.Resources.ammo_Image;
+        ammo.SizeMode = PictureBoxSizeMode.AutoSize;
+        ammo.Left
 
         }
 
