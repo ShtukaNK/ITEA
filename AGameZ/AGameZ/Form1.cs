@@ -228,7 +228,7 @@ namespace AGameZ
 
         private void shoot (string direct)
         {
-        Bullet shoot = new Bullet();
+        bullet shoot = new bullet();
         shoot.direction = direct;
         shoot.bulletLeft = player.Left + (player.Width / 2);
         shoot.bulletTop = player.Top + (player.Hieght / 2);
