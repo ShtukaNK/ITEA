@@ -12,10 +12,10 @@
             <RowDefinition Height="375"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
-            <Button Click="StartDrawingLines">Draw Line</Button>
-            <Button Click="StartDrawingCircles">Draw Circle</Button>
-            <Button Click="StartDrawingSquares">Draw Square</Button>
-            <Button Click="Clear">Clear</Button>
+            <Button Click="StartDrawingLines" Width="198">Draw Line</Button>
+            <Button Click="StartDrawingCircles" Width="198">Draw Circle</Button>
+            <Button Click="StartDrawingSquares" Width="198">Draw Square</Button>
+            <Button Click="Clear" Width="198">Clear</Button>
         </StackPanel>
         <Canvas Grid.Row="100"
                     Grid.Column="1"  
