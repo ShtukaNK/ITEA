@@ -218,18 +218,33 @@ namespace AGameZ
         PictureBox ammo = new PictureBox();
         ammo.Image = Properties.Resources.ammo_Image;
         ammo.SizeMode = PictureBoxSizeMode.AutoSize;
-        ammo.Left
-
+        ammo.Left = rnd.Next(10, 890);
+        ammo.Top = rnd.Next(50, 600);
+        ammo.Tag = "ammo";
+        this.Controls.Add(ammo);
+        ammo.BringToFront();
+        player.BringToFront();
         }
 
         private void shoot (string direct)
         {
+        Bullet shoot = new Bullet();
+        shoot.direction = direct;
+        shoot.bulletLeft = player.Left + (player.Width / 2);
+        shoot.bulletTop = player.Top + (player.Hieght / 2);
+        shoot.mkBullet(this);
+    }
 
-        }
-
-        private void makeZombies ()
+    private void makeZombies()
         {
-
+        PictureBox zombie = new PictureBox();
+        zombie.Tag = "zombie";
+        zombie.Image = Properties.Resources.zdown;
+        zombie.Left = rnd.Next(0, 900);
+        zombie.Top = rnd.Next(0, 800);
+        zombie.SizeMode = PictureBoxSizeMode.AutoSize;
+        this.Controls.Add(zombie);
+        player.BringToFront();
         }
 
     }
