@@ -1,4 +1,0 @@
-C:\Users\diabo\source\repos\ConsoleApp21\ConsoleApp21\obj\Debug\ConsoleApp21.csprojAssemblyReference.cache
-C:\Users\diabo\source\repos\ConsoleApp21\ConsoleApp21\obj\Debug\ConsoleApp21.csproj.CoreCompileInputs.cache
-E:\GitHUB\ITEA\ConsoleApp\ConsoleApp21\obj\Debug\ConsoleApp21.csprojAssemblyReference.cache
-E:\GitHUB\ITEA\ConsoleApp\ConsoleApp21\obj\Debug\ConsoleApp21.csproj.CoreCompileInputs.cache
