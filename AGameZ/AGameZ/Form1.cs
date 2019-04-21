@@ -12,7 +12,20 @@ namespace AGameZ
 {
     public partial class Form1 : Form
     {
+        bool goup;
+        bool godown;
+        bool goleft;
+        bool goright;
+        string facing = "up";
+        double playerHealth = 100;
+        int speed = 10;
+        int ammo = 10;
+        int zombieSpeed = 3;
+        int score = 0;
+        bool gameOver = false;
+        Random rnd = new Random();
         public Form1()
+
         {
             InitializeComponent();
         }
@@ -35,28 +48,28 @@ namespace AGameZ
             {
                 goleft = true;
                 facing = "left";
-                player.Image = Properties.Resources.left;
+                Player.Image = Properties.Resources.left;
             }
 
             if (e.KeyCode == Keys.Left)
             {
                 goright = true;
                 facing = "right";
-                player.Image = Properties.Resources.right;
+                Player.Image = Properties.Resources.right;
             }
 
             if (e.KeyCode == Keys.Left)
             {
                 goup = true;
                 facing = "up";
-                player.Image = Properties.Resources.up;
+                Player.Image = Properties.Resources.up;
             }
 
             if (e.KeyCode == Keys.Left)
             {
                 godown = true;
                 facing = "down";
-                player.Image = Properties.Resources.down;
+                Player.Image = Properties.Resources.down;
             }
 
         }
@@ -106,7 +119,7 @@ namespace AGameZ
 
             else
             {
-                player.Image = Properties.Resources.dead;
+                Player.Image = Properties.Resources.dead;
                 timer1.Stop();
                 gameOver = true;
             }
@@ -114,39 +127,39 @@ namespace AGameZ
             label1.Text = " Ammo: " + ammo;
             label2.Text = "Kills: " + score;
 
-            if (player.Health < 20)
+            if (playerHealth < 20)
             {
                 progressBar1.ForeColor = System.Drawing.Color.Red;
             }
 
-            if (goleft && player.Left > 0)
+            if (goleft && Player.Left > 0)
             {
-                player.Left -= speed;
+                Player.Left -= speed;
             }
 
-            if (goright && player.Left + player.Width < 930)
+            if (goright && Player.Left + Player.Width < 930)
             {
-                player.Left += speed;
+                Player.Left += speed;
             }
 
-            if (group && player.Top > 60)
+            if (group && Player.Top > 60)
             {
-                player.Top -= speed;
+                Player.Top -= speed;
             }
 
-            if (godown && player.Top + player.Hight < 700)
+            if (godown && Player.Top + Player.Height < 700)
             {
-                player.Top += speed;
+                Player.Top += speed;
             }
 
             foreach (Control x in this.Controls)
 
             if (x is PictureBox && x.Tag == "ammo")
             {
-                if (((PictureBox)x).Bounds.IntersectsWith(player.Bounds))
+                if (((PictureBox)x).Bounds.IntersectsWith(Player.Bounds))
                 {
                         this.Controls.Remove(((PictureBox)x));
-                        ((PicutureBox)x).Dispose();
+                        ((PictureBox)x).Dispose();
                         ammo += 5;
                 }
             }
@@ -162,30 +175,30 @@ namespace AGameZ
 
             if (x is PictureBox && x.Tag == "zombie")
             {
-                if (((PictureBox)x).Bounds.IntersectsWith(player.Bounds))
+                if (((PictureBox)x).Bounds.IntersectsWith(Player.Bounds))
                 {
                     playerHealth -= 1;
                 }
 
-                if (((PictureBox)x).Left > player.Left)
+                if (((PictureBox)x).Left > Player.Left)
                 {
                     ((PictureBox)x).Left -= zombieSpeed;
                     ((PictureBox)x).Image = Properties.Resources.zleft;
                 }
 
-                if (((PictureBox)x).Top > player.Top)
+                if (((PictureBox)x).Top > Player.Top)
                 {
                     ((PictureBox)x).Top -= zombieSpeed;
                     ((PictureBox)x).Image = Properties.Resources.zup;
                 }
 
-                if (((PictureBox)x).Right > player.Right)
+                if (((PictureBox)x).Right > Player.Right)
                 {
                     ((PictureBox)x).Right -= zombieSpeed;
                     ((PictureBox)x).Image = Properties.Resources.zright;
                 }
 
-                if (((PictureBox)x).Down > player.Down)
+                if (((PictureBox)x).Down > Player.Down)
                 {
                     ((PictureBox)x).Down -= zombieSpeed;
                     ((PictureBox)x).Image = Properties.Resources.zdown;
@@ -248,4 +261,3 @@ namespace AGameZ
         }
 
     }
-}
