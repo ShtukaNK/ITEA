@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using zombieShooter;
 
 namespace AGameZ
 {
@@ -71,7 +72,6 @@ namespace AGameZ
                 facing = "down";
                 Player.Image = Properties.Resources.down;
             }
-
         }
 
         private void keyisup(object sender, KeyEventArgs e)
@@ -142,7 +142,7 @@ namespace AGameZ
                 Player.Left += speed;
             }
 
-            if (group && Player.Top > 60)
+            if (goup && Player.Top > 60)
             {
                 Player.Top -= speed;
             }
@@ -153,111 +153,108 @@ namespace AGameZ
             }
 
             foreach (Control x in this.Controls)
-
-            if (x is PictureBox && x.Tag == "ammo")
             {
-                if (((PictureBox)x).Bounds.IntersectsWith(Player.Bounds))
+                if (x is PictureBox && x.Tag == "ammo")
                 {
+                    if (((PictureBox)x).Bounds.IntersectsWith(Player.Bounds))
+                    {
                         this.Controls.Remove(((PictureBox)x));
                         ((PictureBox)x).Dispose();
                         ammo += 5;
-                }
-            }
-
-            if (x is PictureBox && x.Tag == "bullet")
-            {
-                if (((PictureBox)x).Left < 1 || ((PictureBox)x).Left < 930 || ((PictureBox)x).Top < 10 || ((PictureBox)x).Top > 700)
-                {
-                    this.Controls.Remove(((PictureBox)x));
-                    ((PictureBox)x).Dispose();
-                }
-            }
-
-            if (x is PictureBox && x.Tag == "zombie")
-            {
-                if (((PictureBox)x).Bounds.IntersectsWith(Player.Bounds))
-                {
-                    playerHealth -= 1;
+                    }
                 }
 
-                if (((PictureBox)x).Left > Player.Left)
+                if (x is PictureBox && x.Tag == "bullet")
                 {
-                    ((PictureBox)x).Left -= zombieSpeed;
-                    ((PictureBox)x).Image = Properties.Resources.zleft;
-                }
-
-                if (((PictureBox)x).Top > Player.Top)
-                {
-                    ((PictureBox)x).Top -= zombieSpeed;
-                    ((PictureBox)x).Image = Properties.Resources.zup;
-                }
-
-                if (((PictureBox)x).Right > Player.Right)
-                {
-                    ((PictureBox)x).Right -= zombieSpeed;
-                    ((PictureBox)x).Image = Properties.Resources.zright;
-                }
-
-                if (((PictureBox)x).Down > Player.Down)
-                {
-                    ((PictureBox)x).Down -= zombieSpeed;
-                    ((PictureBox)x).Image = Properties.Resources.zdown;
-                }
-            }
-
-            foreach (Control j in this.Controls)
-            {
-                if ((j is PictureBox && j.Tag == "bullet") && (x is PictureBox && x.Tag == "zombie"))
-                {
-                    if (x.Bounds.IntersectsWith (j.Bounds))
+                    if (((PictureBox)x).Left < 1 || ((PictureBox)x).Left < 930 || ((PictureBox)x).Top < 10 || ((PictureBox)x).Top > 700)
                     {
-                        score++;
-                        this.Controls.Remove(j);
-                        j.Dispose();
-                        this.Controls.Remove(x);
-                        x.Dispose();
-                        makeZombies();
+                        this.Controls.Remove(((PictureBox)x));
+                        ((PictureBox)x).Dispose();
+                    }
+                }
+
+                if (x is PictureBox && x.Tag == "zombie")
+                {
+                    if (((PictureBox)x).Bounds.IntersectsWith(Player.Bounds))
+                    {
+                        playerHealth -= 1;
+                    }
+
+                    if (((PictureBox)x).Left > Player.Left)
+                    {
+                        ((PictureBox)x).Left -= zombieSpeed;
+                        ((PictureBox)x).Image = Properties.Resources.zleft;
+                    }
+
+                    if (((PictureBox)x).Top > Player.Top)
+                    {
+                        ((PictureBox)x).Top -= zombieSpeed;
+                        ((PictureBox)x).Image = Properties.Resources.zup;
+                    }
+
+                    if (((PictureBox)x).Left < Player.Left)
+                    {
+                        ((PictureBox)x).Left += zombieSpeed;
+                        ((PictureBox)x).Image = Properties.Resources.zright;
+                    }
+
+                    if (((PictureBox)x).Top < Player.Top)
+                    {
+                        ((PictureBox)x).Top += zombieSpeed;
+                        ((PictureBox)x).Image = Properties.Resources.zdown;
+                    }
+                }
+
+                foreach (Control j in this.Controls)
+                {
+                    if ((j is PictureBox && j.Tag == "bullet") && (x is PictureBox && x.Tag == "zombie"))
+                    {
+                        if (x.Bounds.IntersectsWith(j.Bounds))
+                        {
+                            score++;
+                            this.Controls.Remove(j);
+                            j.Dispose();
+                            this.Controls.Remove(x);
+                            x.Dispose();
+                            makeZombies();
+                        }
                     }
                 }
             }
-
-
-            }
-
         }
 
         private void DropAmmo()
         {
-        PictureBox ammo = new PictureBox();
-        ammo.Image = Properties.Resources.ammo_Image;
-        ammo.SizeMode = PictureBoxSizeMode.AutoSize;
-        ammo.Left = rnd.Next(10, 890);
-        ammo.Top = rnd.Next(50, 600);
-        ammo.Tag = "ammo";
-        this.Controls.Add(ammo);
-        ammo.BringToFront();
-        player.BringToFront();
+            PictureBox ammo = new PictureBox();
+            ammo.Image = Properties.Resources.ammo_Image;
+            ammo.SizeMode = PictureBoxSizeMode.AutoSize;
+            ammo.Left = rnd.Next(10, 890);
+            ammo.Top = rnd.Next(50, 600);
+            ammo.Tag = "ammo";
+            this.Controls.Add(ammo);
+            ammo.BringToFront();
+            Player.BringToFront();
         }
 
-        private void shoot (string direct)
+        private void shoot(string direct)
         {
-        bullet shoot = new bullet();
-        shoot.direction = direct;
-        shoot.bulletLeft = player.Left + (player.Width / 2);
-        shoot.bulletTop = player.Top + (player.Hieght / 2);
-        shoot.mkBullet(this);
-    }
-
-    private void makeZombies()
-        {
-        PictureBox zombie = new PictureBox();
-        zombie.Tag = "zombie";
-        zombie.Image = Properties.Resources.zdown;
-        zombie.Left = rnd.Next(0, 900);
-        zombie.Top = rnd.Next(0, 800);
-        zombie.SizeMode = PictureBoxSizeMode.AutoSize;
-        this.Controls.Add(zombie);
-        player.BringToFront();
+            bullet shoot = new bullet();
+            shoot.direction = direct;
+            shoot.bulletLeft = Player.Left + (Player.Width / 2);
+            shoot.bulletTop = Player.Top + (Player.Height / 2);
+            shoot.mkBullet(this);
         }
 
+        private void makeZombies()
+        {
+            PictureBox zombie = new PictureBox();
+            zombie.Tag = "zombie";
+            zombie.Image = Properties.Resources.zdown;
+            zombie.Left = rnd.Next(0, 900);
+            zombie.Top = rnd.Next(0, 800);
+            zombie.SizeMode = PictureBoxSizeMode.AutoSize;
+            this.Controls.Add(zombie);
+            Player.BringToFront();
+        }
     }
+}
