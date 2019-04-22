@@ -129,7 +129,7 @@ namespace AGameZ
 
             if (playerHealth < 20)
             {
-                progressBar1.ForeColor = System.Drawing.Color.Red;
+                progressBar1.ForeColor = System.Drawing.Color.Red; //Color.FromArgb(255, 255, 255);
             }
 
             if (goleft && Player.Left > 0)

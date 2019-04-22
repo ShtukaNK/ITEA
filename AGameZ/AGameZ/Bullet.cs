@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace zombieShooter
 {
-    class bullet
+    public class bullet
     {
         public string direction;
         public int speed = 20;
@@ -19,7 +19,7 @@ namespace zombieShooter
 
         public void mkBullet(Form form)
         {
-            Bullet.BackColor = System.Drawing.Color.White;
+            Bullet.BackColor = Color.FromArgb(255, 255, 255); //System.Drawing.Color.White;
             Bullet.Size = new Size(5, 5);
             Bullet.Tag = "bullet";
             Bullet.Left = bulletLeft;
@@ -31,6 +31,7 @@ namespace zombieShooter
             tm.Tick += new EventHandler(tm_Tick);
             tm.Start();
         }
+
         public void tm_Tick(object sender, EventArgs e)
         {   
             if (direction == "left")
