@@ -16,6 +16,7 @@ namespace zombieShooter
         Timer tm = new Timer();
         public int bulletLeft;
         public int bulletTop;
+
         public void mkBullet(Form form)
         {
             Bullet.BackColor = System.Drawing.Color.White;
@@ -48,7 +49,7 @@ namespace zombieShooter
             {
                 Bullet.Top += speed;
             }
-            if (Bullet.Left > 16 || Bullet.Left < 860 || Bullet.Top > 10 || Bullet.Top < 616)
+            if (Bullet.Left < 16 || Bullet.Left > 860 || Bullet.Top < 10 || Bullet.Top > 616)
             {
                 tm.Stop();
                 tm.Dispose();

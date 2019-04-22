@@ -52,21 +52,21 @@ namespace AGameZ
                 Player.Image = Properties.Resources.left;
             }
 
-            if (e.KeyCode == Keys.Left)
+            if (e.KeyCode == Keys.Right)
             {
                 goright = true;
                 facing = "right";
                 Player.Image = Properties.Resources.right;
             }
 
-            if (e.KeyCode == Keys.Left)
+            if (e.KeyCode == Keys.Up)
             {
                 goup = true;
                 facing = "up";
                 Player.Image = Properties.Resources.up;
             }
 
-            if (e.KeyCode == Keys.Left)
+            if (e.KeyCode == Keys.Down)
             {
                 godown = true;
                 facing = "down";
@@ -124,8 +124,8 @@ namespace AGameZ
                 gameOver = true;
             }
 
-            label1.Text = " Ammo: " + ammo;
-            label2.Text = "Kills: " + score;
+            label1.Text = "Ammo:  " + ammo;
+            label2.Text = "Kills:   " + score;
 
             if (playerHealth < 20)
             {
